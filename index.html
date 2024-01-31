@@ -16,6 +16,9 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="row">
+            <h2 id="tituloJogador"> Jogador 1, agora é a sua vez [O]</h2>
+        </div>
         <div class="row"> 
             <div class="col-4 celula">
                 <span onclick="trocaValor(this,0,0)">-</span>
@@ -64,19 +67,34 @@
 
     function trocaValor(span, linha, coluna)
     {
-        if ( numeroJogador == 1)
+        if(matrizJogo [linha][coluna] == '')
         {
-            matrizJogo[linha][coluna] = "o";
-            span.innerHTML = "o"; 
-            numeroJogador = 2;
+            if ( numeroJogador == 1)
+            {
+                matrizJogo[linha][coluna] = "O";
+                span.innerHTML = "O"; 
+                numeroJogador = 2;
+                document.getElementById('tituloJogador').innerHTML = 
+                    'Jogador 2, agora é a sua vez [X]';
+            }else{
+                matrizJogo[linha][coluna] = "X";
+                span.innerHTML = "X"; 
+                numeroJogador = 1;
+                document.getElementById('tituloJogador').innerHTML = 
+                    'Jogador 1, agora é a sua vez [O]';
+            }
+
+            if((matrizJogo[0][0] == matrizJogo[0][1]) &&
+                (matrizJogo[0][0] == matrizJogo[0][2]) 
+               
+                )
+            {
+                alert ('Você venceu!');
+            }
+
         }else{
-            matrizJogo[linha][coluna] = "X";
-            span.innerHTML = "X"; 
-            numeroJogador = 1;
-
+            alert('Celula já Selecionada');
         }
-       
-
         console.log(matrizJogo);
     }
 
